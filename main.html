@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IPGuard | Ciberseguridad y Redes</title>
+  <meta name="description" content="IPGuard protege tu infraestructura: auditorías, hardening, firewalls, VPN, monitorización y respuesta a incidentes." />
+
+  <style>
+    :root{
+      --bg:#f5f7fa;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --text:#111827;
+
+      --brand:#0071e3;
+      --brandDark:#005bb5;
+
+      --border:#e5e7eb;
+      --border2:#d1d5db;
+
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+      --shadow2: 0 16px 50px rgba(0,0,0,.08);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display",
+                  "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      line-height:1.6;
+      background:
+        radial-gradient(900px 400px at 15% 0%, rgba(0,113,227,.10), transparent 60%),
+        radial-gradient(900px 400px at 90% 10%, rgba(0,113,227,.06), transparent 55%),
+        var(--bg);
+    }
+
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1120px;margin:0 auto;padding:0 24px}
+    main.container{padding-top:22px;padding-bottom:40px;}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:10;
+      background:rgba(255,255,255,.82);
+      backdrop-filter: blur(18px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{
+      max-width:1120px;
+      margin:0 auto;
+      padding:14px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .logo-img{height:54px;width:auto;display:block}
+    .brand-text{font-size:16px;letter-spacing:.2px}
+
+    .navlinks{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .navlinks a{
+      padding:8px 10px;
+      border-radius:10px;
+      color:var(--muted);
+      transition:.2s;
+      font-size:14px;
+    }
+    .navlinks a:hover{color:var(--text);background:#f3f4f6}
+
+    /* BUTTONS */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:#fff;
+      cursor:pointer;
+      transition:.2s;
+      font-weight:600;
+      font-size:14px;
+    }
+    .btn:hover{background:#f9fafb}
+    .btn.primary{background:var(--brand);color:#fff;border:none}
+    .btn.primary:hover{background:var(--brandDark)}
+    .btn.ghost{background:transparent}
+
+    /* HERO */
+    .hero{
+      padding:48px 0 26px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:34px;
+      align-items:start;
+    }
+
+    h1{
+      margin:14px 0 14px;
+      font-size: clamp(36px, 4.4vw, 56px);
+      line-height:1.05;
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+
+    .lead{color:var(--muted);font-size:18px;max-width:62ch}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+
+    .note{margin-top:12px;color:var(--muted);font-size:13px}
+
+    .panel{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      padding:22px;
+    }
+
+    .kicker{
+      color:var(--brand);
+      font-weight:700;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .stat{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:12px;
+      background:#fff;
+      box-shadow: var(--shadow);
+    }
+    .stat b{font-size:16px}
+    .stat span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+
+    /* LOGOS */
+    .logos{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:10px;
+      margin-top:16px;
+    }
+
+    /* IMAGE BOX (para todas las imágenes) */
+    .img-box{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      background:#fff;
+    }
+    .img-box img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:cover;
+    }
+    .img-box.logo{
+      box-shadow:none;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+    .img-box.logo img{
+      object-fit:contain;
+      padding:10px;
+      height:64px;
+      width:100%;
+    }
+
+    /* SECTIONS */
+    section{padding:56px 0}
+
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:22px;
+    }
+    .section-title h2{
+      margin:10px 0 8px;
+      font-size:32px;
+      font-weight:700;
+      letter-spacing:-.01em;
+    }
+    .section-title p{margin:0;color:var(--muted);max-width:70ch}
+
+    /* Cards */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:20px;
+      box-shadow: var(--shadow);
+      transition:.2s;
+    }
+    .card:hover{transform:translateY(-3px)}
+    .card h3{margin:12px 0 10px;font-size:18px}
+    .card p{margin:0;color:var(--muted)}
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#f9fafb;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:600;
+      width:fit-content;
+    }
+
+    /* Two columns blocks */
+    .two{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    /* Lists */
+    .list{list-style:none;padding:0;margin:12px 0 0}
+    .list li{
+      padding:10px 0;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:14px;
+    }
+    .list li b{color:var(--text)}
+
+    /* Feature rows */
+    .feature{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      align-items:center;
+      padding:18px;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background:#fff;
+      box-shadow: var(--shadow);
+      margin-top:14px;
+    }
+    .mini{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+    /* Pricing */
+    .pricing{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .price{position:relative}
+    .tag{
+      position:absolute;
+      top:14px;
+      right:14px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#f9fafb;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:700;
+    }
+    .money{font-size:30px;font-weight:800;margin:10px 0;letter-spacing:-.01em}
+    .small{color:var(--muted);font-size:13px}
+
+    /* Form */
+    form{display:grid;gap:10px;margin-top:12px}
+    input, textarea{
+      padding:12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      width:100%;
+      background:#fff;
+      font:inherit;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(0,113,227,.55);
+      outline:none;
+      box-shadow: 0 0 0 4px rgba(0,113,227,.10);
+    }
+
+    /* Footer */
+    footer{
+      padding:32px 0;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      background:rgba(255,255,255,.6);
+    }
+    .foot{
+      max-width:1120px;
+      margin:0 auto;
+      padding:0 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    /* Responsive */
+    @media(max-width:980px){
+      .navlinks{display:none;}
+      .hero{grid-template-columns:1fr; padding-top:28px}
+      .grid{grid-template-columns:1fr}
+      .two{grid-template-columns:1fr}
+      .pricing{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      .logos{grid-template-columns:repeat(3,1fr)}
+      .feature{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top" aria-label="IPGuard inicio">
+        <img src="images/logo.png" alt="IPGuard" class="logo-img">
+        <span class="brand-text">IPGuard</span>
+      </a>
+
+      <div class="navlinks">
+        <a href="#soluciones">Soluciones</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#metodo">Método</a>
+        <a href="#planes">Planes</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+
+      <a class="btn primary" href="#contacto">Pedir diagnóstico</a>
+    </div>
+  </div>
+
+  <main id="top" class="container">
+    <div class="hero">
+      <div>
+        <h1>Seguridad real para redes reales. Sin humo. Con evidencias.</h1>
+        <p class="lead">
+          Auditoría, hardening, firewall/VPN, segmentación IT/OT y monitorización.
+          Te decimos qué riesgo tienes, cómo se explota y qué arreglar primero.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn primary" href="#contacto">Quiero una auditoría</a>
+          <a class="btn ghost" href="#soluciones">Ver soluciones</a>
+        </div>
+
+        <div class="note">
+          * Prometemos no vender “IA cuántica blockchain” (a no ser que venga con logs y un CVE).
+        </div>
+
+        <div class="stats">
+          <div class="stat"><b>Perímetro</b><span>FW, VPN, WAF, mínimos privilegios</span></div>
+          <div class="stat"><b>Visibilidad</b><span>Logs, alertas, reporting ejecutivo</span></div>
+          <div class="stat"><b>Resiliencia</b><span>Backups, hardening, respuesta</span></div>
+        </div>
+
+        <!-- Logos clientes (cambia nombres cuando quieras) -->
+        <div class="logos" aria-label="Logos clientes o partners">
+          <div class="img-box logo"><img src="images/cliente1.png" alt="Cliente 1"></div>
+          <div class="img-box logo"><img src="images/cliente2.png" alt="Cliente 2"></div>
+          <div class="img-box logo"><img src="images/cliente3.png" alt="Cliente 3"></div>
+          <div class="img-box logo"><img src="images/cliente4.png" alt="Cliente 4"></div>
+          <div class="img-box logo"><img src="images/cliente5.png" alt="Cliente 5"></div>
+          <div class="img-box logo"><img src="images/cliente6.png" alt="Cliente 6"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="kicker">Vista rápida</div>
+        <h2 style="margin:10px 0 10px; font-size:22px; letter-spacing:-.01em;">Un panel que se entiende</h2>
+        <p style="margin:0;color:var(--muted);">
+          Dashboard, diagrama bonito o captura (sin datos sensibles).
+        </p>
+
+        <div class="img-box" style="margin-top:14px;">
+          <img src="images/panel.png" alt="Dashboard IPGuard">
+        </div>
+
+        <ul class="list">
+          <li><b>Entregables</b> claros: riesgos, evidencias, impacto, quick wins</li>
+          <li><b>Cambios</b> controlados: ventana, rollback, validación</li>
+          <li><b>Roadmap</b> realista: corto/medio/largo plazo</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SOLUCIONES -->
+    <section id="soluciones">
+      <div class="section-title">
+        <div>
+          <div class="kicker">Soluciones</div>
+          <h2>Lo que resolvemos</h2>
+        </div>
+        <p>Enfocado a resultados: menos exposición, más control y detección accionable.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="pill">Reducir superficie</div>
+          <h3>Perímetro y acceso remoto</h3>
+          <p>VPN segura, políticas mínimas, MFA, y servicios publicados bien cerrados.</p>
+        </div>
+        <div class="card">
+          <div class="pill">Evitar movimiento lateral</div>
+          <h3>Segmentación IT/OT</h3>
+          <p>VLAN/ACL, zonas, reglas por necesidad real. “Any/Any” a extinguir.</p>
+        </div>
+        <div class="card">
+          <div class="pill">Ver lo que pasa</div>
+          <h3>Logs, alertas, reporting</h3>
+          <p>Centralización, alertas útiles y reporting para dirección + técnico.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+      <div class="section-title">
+        <div>
+          <div class="kicker">Servicios</div>
+          <h2>Servicios de IPGuard</h2>
+        </div>
+        <p>Diagnóstico puntual, despliegue o servicio gestionado. Lo que necesitas, no lo que te quieran vender.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="kicker">Assessment</div>
+          <h3>Auditoría & hardening</h3>
+          <p>Revisión de exposición, configuraciones, evidencias, priorización y plan.</p>
+        </div>
+        <div class="card">
+          <div class="kicker">Network</div>
+          <h3>Firewall, VPN y Zero Trust</h3>
+          <p>Políticas mínimas, acceso seguro, segmentación, y control de cambios.</p>
+        </div>
+        <div class="card">
+          <div class="kicker">Web</div>
+          <h3>Protección web y APIs</h3>
+          <p>TLS, cabeceras, WAF, rate limit y buenas prácticas de publicación.</p>
+        </div>
+        <div class="card">
+          <div class="kicker">SOC-lite</div>
+          <h3>Monitorización y alertas</h3>
+          <p>SIEM/analítica ligera, alertas accionables y cuadros de mando.</p>
+        </div>
+        <div class="card">
+          <div class="kicker">IR</div>
+          <h3>Respuesta a incidentes</h3>
+          <p>Triaging, contención, análisis inicial y plan post-mortem.</p>
+        </div>
+        <div class="card">
+          <div class="kicker">GRC</div>
+          <h3>NIS2 / ISO 27001 / ENS</h3>
+          <p>Gap analysis y evidencias: políticas mínimas + medidas técnicas reales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÉTODO -->
+    <section id="metodo">
+      <div class="section-title">
+        <div>
+          <div class="kicker">Método</div>
+          <h2>Cómo trabajamos</h2>
+        </div>
+        <p>Proceso simple: visibilidad → control → mejora continua (y documentado).</p>
+      </div>
+
+      <div class="feature">
+        <div>
+          <div class="pill">1 · Diagnóstico</div>
+          <h3 style="margin:10px 0 8px;">Mapa rápido y prioridades</h3>
+          <p style="margin:0;color:var(--muted);">
+            Inventario mínimo, flujos críticos y superficie expuesta. Definimos qué es “crítico” de verdad.
+          </p>
+          <div class="mini">
+            <span class="pill">Inventario</span>
+            <span class="pill">Riesgo</span>
+            <span class="pill">Quick wins</span>
+          </div>
+          <ul class="list">
+            <li><b>Salida:</b> riesgos + evidencias + plan priorizado</li>
+          </ul>
+        </div>
+        <div class="img-box"><img src="images/1.png" alt="Diagnóstico"></div>
+      </div>
+
+      <div class="feature">
+        <div class="img-box"><img src="images/2.png" alt="Implementación"></div>
+        <div>
+          <div class="pill">2 · Implementación</div>
+          <h3 style="margin:10px 0 8px;">Cambios controlados</h3>
+          <p style="margin:0;color:var(--muted);">
+            Ventanas, rollback, validación. Si algo toca producción, lo tratamos como producción.
+          </p>
+          <div class="mini">
+            <span class="pill">Firewall/VPN</span>
+            <span class="pill">Hardening</span>
+            <span class="pill">WAF/TLS</span>
+          </div>
+          <ul class="list">
+            <li><b>Salida:</b> configuración + documentación + validación</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div>
+          <div class="pill">3 · Monitorización</div>
+          <h3 style="margin:10px 0 8px;">Alertas que no dan vergüenza</h3>
+          <p style="margin:0;color:var(--muted);">
+            Centralizamos logs y montamos detección base (y afinamos para evitar “alertas por respirar”).
+          </p>
+          <div class="mini">
+            <span class="pill">Logs</span>
+            <span class="pill">Detección</span>
+            <span class="pill">Reporting</span>
+          </div>
+          <ul class="list">
+            <li><b>Salida:</b> paneles + alertas + KPIs</li>
+          </ul>
+        </div>
+        <div class="img-box"><img src="images/3.png" alt="Monitorización"></div>
+      </div>
+    </section>
+
+    
+    <!-- PLANES -->
+    <section id="planes">
+      <div class="section-title">
+        <div>
+          <div class="kicker">Planes</div>
+          <h2>Paquetes típicos</h2>
+        </div>
+        <p>Precios orientativos: se ajusta según tamaño, alcance y urgencia.</p>
+      </div>
+
+      <div class="pricing">
+        <div class="card price">
+          <div class="tag">Para empezar</div>
+          <h3>Diagnóstico</h3>
+          <div class="money">€ —</div>
+          <div class="small">Auditoría base + plan de acción</div>
+          <ul class="list">
+            <li><b>Revisión</b> configuración y exposición</li>
+            <li><b>Top riesgos</b> y quick wins</li>
+            <li><b>Informe</b> + llamada de entrega</li>
+          </ul>
+          <a class="btn" href="#contacto" style="margin-top:12px;width:100%;">Pedir alcance</a>
+        </div>
+
+        <div class="card price">
+          <div class="tag">Más popular</div>
+          <h3>Perímetro seguro</h3>
+          <div class="money">€ —</div>
+          <div class="small">Firewall/VPN + segmentación</div>
+          <ul class="list">
+            <li><b>Least privilege</b> (políticas mínimas)</li>
+            <li><b>VPN</b> (WireGuard/OpenVPN/IPsec)</li>
+            <li><b>Segmentación</b> VLAN/ACL</li>
+          </ul>
+          <a class="btn primary" href="#contacto" style="margin-top:12px;width:100%;">Quiero proteger red</a>
+        </div>
+
+        <div class="card price">
+          <div class="tag">Continuo</div>
+          <h3>Managed Security</h3>
+          <div class="money">€ —/mes</div>
+          <div class="small">Monitorización + reporting</div>
+          <ul class="list">
+            <li><b>Logs</b> y alertas</li>
+            <li><b>Revisión</b> periódica</li>
+            <li><b>Roadmap</b> de madurez</li>
+          </ul>
+          <a class="btn" href="#contacto" style="margin-top:12px;width:100%;">Quiero monitorización</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="section-title">
+        <div>
+          <div class="kicker">FAQ</div>
+          <h2>Preguntas típicas</h2>
+        </div>
+        <p>Respuestas rápidas, sin venderte humo.</p>
+      </div>
+
+      <div class="two">
+        <div class="card">
+          <h3>¿DMZ en router de casa es buena idea?</h3>
+          <p>Normalmente no. Mejor abrir puertos mínimos o usar VPN. La “DMZ” doméstica suele exponer demasiado.</p>
+        </div>
+        <div class="card">
+          <h3>¿Podéis trabajar remoto?</h3>
+          <p>Sí, con VPN segura y accesos temporales. También podemos guiar cambios paso a paso.</p>
+        </div>
+        <div class="card">
+          <h3>¿Entregáis informe?</h3>
+          <p>Sí: riesgos, evidencias, impacto, recomendaciones y priorización. Nada de “lista infinita sin contexto”.</p>
+        </div>
+        <div class="card">
+          <h3>¿Cumplimiento NIS2/ISO?</h3>
+          <p>Podemos hacer gap analysis y roadmap con evidencias técnicas y políticas mínimas necesarias.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="section-title">
+        <div>
+          <div class="kicker">Contacto</div>
+          <h2>Hablemos</h2>
+        </div>
+        <p>Cuéntame tu caso y te devuelvo un alcance y próximos pasos.</p>
+      </div>
+
+      <div class="two">
+        <div class="card">
+          <h3>Formulario</h3>
+          <p style="color:var(--muted);margin-top:-6px;">
+            (Este formulario necesita backend para enviar. Si quieres, lo conectamos a Formspree, Zoho, o un VPS.)
+          </p>
+          <form onsubmit="return fakeSubmit(event)">
+            <input required name="name" placeholder="Nombre" />
+            <input required name="email" type="email" placeholder="Email" />
+            <input name="company" placeholder="Empresa (opcional)" />
+            <textarea required name="message" rows="5" placeholder="¿Qué necesitas proteger? (red, web, VPN, auditoría, incidente...)"></textarea>
+            <button class="btn primary" type="submit">Enviar</button>
+            <div id="formMsg" class="small" style="display:none;"></div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Datos</h3>
+          <ul class="list">
+            <li><b>Email:</b> <span class="mono">jesus.oran@ipguard.com</span></li>
+            <li><b>Ubicación:</b> Barcelona</li>
+            <li><b>Horario:</b> Lun–Vie</li>
+          </ul>
+
+          <div class="img-box" style="margin-top:14px;">
+            <img src="images/contacto.png" alt="Contacto IPGuard">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <div class="logo">
+        <img src="images/logo.png" alt="IPGuard" class="logo-img">
+        <span><b>IPGuard</b> <span class="small">© <span id="y"></span></span></span>
+      </div>
+      <div class="small">Seguridad en redes • Ciberseguridad aplicada • Sin drama (solo logs).</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    function fakeSubmit(e){
+      e.preventDefault();
+      const msg = document.getElementById("formMsg");
+      msg.style.display = "block";
+      msg.textContent = "Listo ✅ (Demo). Para que envíe de verdad, hay que conectar un backend o servicio de formularios.";
+      return false;
+    }
+  </script>
+</body>
+</html>
