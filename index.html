@@ -17,7 +17,6 @@
       --brandDark:#005bb5;
 
       --border:#e5e7eb;
-      --border2:#d1d5db;
 
       --shadow: 0 10px 30px rgba(0,0,0,.06);
       --shadow2: 0 16px 50px rgba(0,0,0,.08);
@@ -118,7 +117,6 @@
 
     .lead{color:var(--muted);font-size:18px;max-width:62ch}
     .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-
     .note{margin-top:12px;color:var(--muted);font-size:13px}
 
     .panel{
@@ -161,7 +159,7 @@
       margin-top:16px;
     }
 
-    /* IMAGE BOX (para todas las imágenes) */
+    /* IMAGE BOX */
     .img-box{
       border-radius:18px;
       overflow:hidden;
@@ -175,16 +173,16 @@
       display:block;
       object-fit:cover;
     }
+
     .img-box.logo{
       box-shadow:none;
-      border:1px solid var(--border);
       background:#fff;
     }
     .img-box.logo img{
-      object-fit:contain;
-      padding:10px;
       height:64px;
       width:100%;
+      object-fit:contain;
+      padding:10px;
     }
 
     /* SECTIONS */
@@ -236,7 +234,7 @@
       width:fit-content;
     }
 
-    /* Two columns blocks */
+    /* Two columns */
     .two{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -361,6 +359,7 @@
   </div>
 
   <main id="top" class="container">
+    <!-- HERO -->
     <div class="hero">
       <div>
         <h1>Seguridad real para redes reales. Sin humo. Con evidencias.</h1>
@@ -384,7 +383,6 @@
           <div class="stat"><b>Resiliencia</b><span>Backups, hardening, respuesta</span></div>
         </div>
 
-        <!-- Logos clientes (cambia nombres cuando quieras) 
         <div class="logos" aria-label="Logos clientes o partners">
           <div class="img-box logo"><img src="images/cliente1.png" alt="Cliente 1"></div>
           <div class="img-box logo"><img src="images/cliente2.png" alt="Cliente 2"></div>
@@ -394,17 +392,7 @@
           <div class="img-box logo"><img src="images/cliente6.png" alt="Cliente 6"></div>
         </div>
       </div>
--->
 
-      <div class="logos" aria-label="Logos clientes o partners">
-          <div class="img-box logo"><img src="images/cliente1.png" ></div>
-          <div class="img-box logo"><img src="images/cliente2.png" ></div>
-          <div class="img-box logo"><img src="images/cliente3.png" </div>
-          <div class="img-box logo"><img src="images/cliente4.png" </div>
-          <div class="img-box logo"><img src="images/cliente5.png" ></div>
-          <div class="img-box logo"><img src="images/cliente6.png" </div>
-        </div>
-      </div>
       <div class="panel">
         <div class="kicker">Vista rápida</div>
         <h2 style="margin:10px 0 10px; font-size:22px; letter-spacing:-.01em;">Un panel que se entiende</h2>
@@ -565,7 +553,6 @@
       </div>
     </section>
 
-    
     <!-- PLANES -->
     <section id="planes">
       <div class="section-title">
@@ -580,7 +567,7 @@
         <div class="card price">
           <div class="tag">Para empezar</div>
           <h3>Diagnóstico</h3>
-          <div class="money"<100€</div>
+          <div class="money">100€</div>
           <div class="small">Auditoría base + plan de acción</div>
           <ul class="list">
             <li><b>Revisión</b> configuración y exposición</li>
@@ -593,7 +580,7 @@
         <div class="card price">
           <div class="tag">Más popular</div>
           <h3>Perímetro seguro</h3>
-          <div class="money"<300€ —</div>
+          <div class="money">300€</div>
           <div class="small">Firewall/VPN + segmentación</div>
           <ul class="list">
             <li><b>Least privilege</b> (políticas mínimas)</li>
@@ -606,7 +593,7 @@
         <div class="card price">
           <div class="tag">Continuo</div>
           <h3>Managed Security</h3>
-          <div class="money">€ 50/mes</div>
+          <div class="money">50€ / mes</div>
           <div class="small">Monitorización + reporting</div>
           <ul class="list">
             <li><b>Logs</b> y alertas</li>
@@ -713,6 +700,3 @@
   </script>
 </body>
 </html>
-
-
-
